@@ -13,22 +13,12 @@ import {
   KBarProvider,
   KBarResults,
   KBarSearch,
-  useKBar,
   useMatches,
 } from 'kbar';
-import {
-  Backdrop,
-  GlobalStyles,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  Typography,
-} from '@mui/material';
+import {Backdrop, ListItemText, MenuItem, Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import {alpha} from '@mui/system';
 import {grey} from '@mui/material/colors';
-import Container from '@mui/material/Container';
-import {Action} from 'kbar/src/types';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
