@@ -16,11 +16,19 @@ import {
   useKBar,
   useMatches,
 } from 'kbar';
-import {Backdrop, GlobalStyles} from '@mui/material';
+import {
+  Backdrop,
+  GlobalStyles,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import {alpha} from '@mui/system';
 import {grey} from '@mui/material/colors';
 import Container from '@mui/material/Container';
+import {Action} from 'kbar/src/types';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -179,19 +187,11 @@ function RenderResults() {
       items={results}
       onRender={({item, active}) =>
         typeof item === 'string' ? (
-          <Box sx={{p: 2, cursor: 'pointer'}}>{item}</Box>
+          <Typography variant="subtitle2">{item}</Typography>
         ) : (
-          <Box
-            sx={{
-              p: 2,
-              cursor: 'pointer',
-              background: active
-                ? theme.palette.background.default
-                : 'transparent',
-            }}
-          >
-            {item.name}
-          </Box>
+          <MenuItem>
+            <ListItemText>{item.name}</ListItemText>
+          </MenuItem>
         )
       }
     />
