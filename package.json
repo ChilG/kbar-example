@@ -1,0 +1,35 @@
+{
+  "name": "kbar-examples",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "prebuild": "rimraf .next",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "pack": "npm run build && next start",
+    "lint": "next lint",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"pages/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.13",
+    "kbar": "^0.1.0-beta.40",
+    "next": "^13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "@types/react": "^18.0.28",
+    "eslint": "^8.36.0",
+    "eslint-config-next": "^13.2.4",
+    "prettier": "^2.8.6",
+    "typescript": "^5.0.2"
+  }
+}
