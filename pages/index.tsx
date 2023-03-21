@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
 import {alpha} from '@mui/system';
 import {grey} from '@mui/material/colors';
-import {useKBar, VisualState} from 'kbar';
+import {useKBar} from 'kbar';
 
 interface IndexProps {}
 

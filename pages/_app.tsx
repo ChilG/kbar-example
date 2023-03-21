@@ -13,8 +13,14 @@ import {
   KBarProvider,
   KBarResults,
   KBarSearch,
+  useKBar,
   useMatches,
 } from 'kbar';
+import {Backdrop, GlobalStyles} from '@mui/material';
+import Box from '@mui/material/Box';
+import {alpha} from '@mui/system';
+import {grey} from '@mui/material/colors';
+import Container from '@mui/material/Container';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -41,6 +47,76 @@ export default function MyApp(props: MyAppProps) {
       keywords: 'email',
       perform: () => (window.location.pathname = 'contact'),
     },
+    {
+      id: 'blog1',
+      name: 'Blog',
+      shortcut: ['b'],
+      keywords: 'writing words',
+      perform: () => (window.location.pathname = 'blog'),
+    },
+    {
+      id: 'contact1',
+      name: 'Contact',
+      shortcut: ['c'],
+      keywords: 'email',
+      perform: () => (window.location.pathname = 'contact'),
+    },
+    {
+      id: 'blog2',
+      name: 'Blog',
+      shortcut: ['b'],
+      keywords: 'writing words',
+      perform: () => (window.location.pathname = 'blog'),
+    },
+    {
+      id: 'contact2',
+      name: 'Contact',
+      shortcut: ['c'],
+      keywords: 'email',
+      perform: () => (window.location.pathname = 'contact'),
+    },
+    {
+      id: 'blog3',
+      name: 'Blog',
+      shortcut: ['b'],
+      keywords: 'writing words',
+      perform: () => (window.location.pathname = 'blog'),
+    },
+    {
+      id: 'contact3',
+      name: 'Contact',
+      shortcut: ['c'],
+      keywords: 'email',
+      perform: () => (window.location.pathname = 'contact'),
+    },
+    {
+      id: 'blog4',
+      name: 'Blog',
+      shortcut: ['b'],
+      keywords: 'writing words',
+      perform: () => (window.location.pathname = 'blog'),
+    },
+    {
+      id: 'contact4',
+      name: 'Contact',
+      shortcut: ['c'],
+      keywords: 'email',
+      perform: () => (window.location.pathname = 'contact'),
+    },
+    {
+      id: 'blog5',
+      name: 'Blog',
+      shortcut: ['b'],
+      keywords: 'writing words',
+      perform: () => (window.location.pathname = 'blog'),
+    },
+    {
+      id: 'contact5',
+      name: 'Contact',
+      shortcut: ['c'],
+      keywords: 'email',
+      perform: () => (window.location.pathname = 'contact'),
+    },
   ];
 
   return (
@@ -54,12 +130,39 @@ export default function MyApp(props: MyAppProps) {
         <CssBaseline />
         <KBarProvider actions={actions}>
           <KBarPortal>
-            <KBarPositioner>
-              <KBarAnimator>
-                <KBarSearch />
-                <RenderResults />
-              </KBarAnimator>
-            </KBarPositioner>
+            <Backdrop
+              open
+              sx={{
+                'div > div': {
+                  maxWidth: 500,
+                  width: '100%',
+                },
+              }}
+            >
+              <KBarPositioner>
+                <KBarAnimator>
+                  <Box
+                    sx={{
+                      borderWidth: 1,
+                      borderStyle: 'solid',
+                      borderColor: alpha(grey[500], 0.2),
+                      borderRadius: 1,
+                      background: theme.palette.background.paper,
+                      input: {
+                        width: '100%',
+                        outline: 'none',
+                        border: 'none',
+                        background: 'transparent',
+                        padding: theme.spacing(2),
+                      },
+                    }}
+                  >
+                    <KBarSearch id="input-kbar" />
+                    <RenderResults />
+                  </Box>
+                </KBarAnimator>
+              </KBarPositioner>
+            </Backdrop>
           </KBarPortal>
           <Component {...pageProps} />
         </KBarProvider>
@@ -76,15 +179,19 @@ function RenderResults() {
       items={results}
       onRender={({item, active}) =>
         typeof item === 'string' ? (
-          <div>{item}</div>
+          <Box sx={{p: 2, cursor: 'pointer'}}>{item}</Box>
         ) : (
-          <div
-            style={{
-              background: active ? '#eee' : 'transparent',
+          <Box
+            sx={{
+              p: 2,
+              cursor: 'pointer',
+              background: active
+                ? theme.palette.background.default
+                : 'transparent',
             }}
           >
             {item.name}
-          </div>
+          </Box>
         )
       }
     />
