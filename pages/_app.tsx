@@ -15,7 +15,13 @@ import {
   KBarSearch,
   useMatches,
 } from 'kbar';
-import {Backdrop, ListItemText, MenuItem, Typography} from '@mui/material';
+import {
+  Backdrop,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import {alpha} from '@mui/system';
 import {grey} from '@mui/material/colors';
@@ -30,92 +36,7 @@ export interface MyAppProps extends AppProps {
 export default function MyApp(props: MyAppProps) {
   const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
 
-  const actions = [
-    {
-      id: 'blog',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-    {
-      id: 'blog1',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact1',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-    {
-      id: 'blog2',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact2',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-    {
-      id: 'blog3',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact3',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-    {
-      id: 'blog4',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact4',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-    {
-      id: 'blog5',
-      name: 'Blog',
-      shortcut: ['b'],
-      keywords: 'writing words',
-      perform: () => (window.location.pathname = 'blog'),
-    },
-    {
-      id: 'contact5',
-      name: 'Contact',
-      shortcut: ['c'],
-      keywords: 'email',
-      perform: () => (window.location.pathname = 'contact'),
-    },
-  ];
+  const actions = [];
 
   return (
     <CacheProvider value={emotionCache}>
@@ -126,7 +47,7 @@ export default function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <KBarProvider actions={actions}>
+        <KBarProvider>
           <KBarPortal>
             <Backdrop
               open
@@ -177,9 +98,12 @@ function RenderResults() {
       items={results}
       onRender={({item, active}) =>
         typeof item === 'string' ? (
-          <Typography variant="subtitle2">{item}</Typography>
+          <Typography variant="subtitle2" sx={{px: 1}}>
+            {item}
+          </Typography>
         ) : (
           <MenuItem>
+            <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText>{item.name}</ListItemText>
           </MenuItem>
         )

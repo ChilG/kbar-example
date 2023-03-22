@@ -7,12 +7,39 @@ import SearchIcon from '@mui/icons-material/Search';
 import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
 import {alpha} from '@mui/system';
 import {grey} from '@mui/material/colors';
-import {useKBar} from 'kbar';
+import {createAction, Priority, useKBar, useRegisterActions} from 'kbar';
+import {MdDarkMode, MdLogin} from 'react-icons/md';
 
 interface IndexProps {}
 
 const Index: React.FC<IndexProps> = (props) => {
   const {query} = useKBar();
+
+  const signupAction = createAction({
+    name: 'Sign Up',
+    perform: () => {},
+    section: 'Recents',
+    priority: Priority.LOW,
+  });
+
+  const loginAction = createAction({
+    name: 'Login',
+    perform: () => {},
+    priority: Priority.HIGH,
+    icon: <MdLogin />,
+  });
+
+  const themeAction = createAction({
+    name: 'Dark mode',
+    perform: () => {},
+    icon: <MdDarkMode />,
+    section: {
+      name: 'Settings',
+      priority: Priority.HIGH,
+    },
+  });
+
+  useRegisterActions([signupAction, loginAction, themeAction]);
 
   const handleClickSearch = () => query.toggle();
 
