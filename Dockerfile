@@ -1,19 +1,19 @@
 # Stage 1: install dependencies
-FROM 818633380072.dkr.ecr.ap-southeast-1.amazonaws.com/node:18 AS deps
+FROM node:18 AS deps
 WORKDIR /app
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 RUN npm install
 
 # Stage 2: build
-FROM 818633380072.dkr.ecr.ap-southeast-1.amazonaws.com/node:18 AS builder
+FROM node:18 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
 # Stage 3: run
-FROM 818633380072.dkr.ecr.ap-southeast-1.amazonaws.com/node:18 AS runner
+FROM node:18 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app/package.json ./package.json
