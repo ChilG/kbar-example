@@ -36,8 +36,6 @@ export interface MyAppProps extends AppProps {
 export default function MyApp(props: MyAppProps) {
   const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
 
-  const actions = [];
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -74,6 +72,7 @@ export default function MyApp(props: MyAppProps) {
                         background: 'transparent',
                         padding: theme.spacing(2),
                       },
+                      '#kbar-listbox div': {},
                     }}
                   >
                     <KBarSearch id="input-kbar" />
@@ -98,12 +97,14 @@ function RenderResults() {
       items={results}
       onRender={({item, active}) =>
         typeof item === 'string' ? (
-          <Typography variant="subtitle2" sx={{px: 1}}>
-            {item}
-          </Typography>
+          <Box sx={{px: 1, mb: 0.5}}>
+            <Typography variant="caption" color="textSecondary">
+              {item}
+            </Typography>
+          </Box>
         ) : (
-          <MenuItem>
-            <ListItemIcon>{item.icon}</ListItemIcon>
+          <MenuItem sx={{borderRadius: 1}}>
+            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
             <ListItemText>{item.name}</ListItemText>
           </MenuItem>
         )
